@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Drip Check — Your Style</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    button,
+    a {
+      font-family: inherit;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 24px 80px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .hero-label {
+      color: #999;
+      font-size: 13px;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1;
+      margin: 0 0 20px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      color: #bdbdbd;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 700px;
+    }
+
+    /* =========================
+       RESULT INTRO
+    ========================= */
+
+    .result-intro {
+      background: #1d1d1d;
+      border: 1px solid #292929;
+      border-radius: 28px;
+      padding: 40px 30px;
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .result-intro h2 {
+      margin: 0 0 15px;
+      font-size: clamp(30px, 5vw, 48px);
+    }
+
+    .result-intro p {
+      margin: 0;
+      color: #c7c7c7;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       SECTION HEADINGS
+    ========================= */
+
+    .section {
+      margin-bottom: 65px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .section-heading span {
+      color: #999;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    /* =========================
+       MAIN LOOK
+    ========================= */
+
+    .main-look {
+      background: #151515;
+      border: 1px solid #333;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .look-photo {
+      position: relative;
+      height: 500px;
+      background: #222;
+      overflow: hidden;
+    }
+
+    .look-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .main-look:hover .look-photo img {
+      transform: scale(1.03);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.05) 65%
+      );
+      pointer-events: none;
+    }
+
+    .look-content {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .look-label {
+      color: #999;
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .look-content h2 {
+      font-size: 40px;
+      margin: 0 0 10px;
+    }
+
+    .look-content p {
+      margin: 0;
+      color: #bdbdbd;
+      font-size: 17px;
+    }
+
+    /* =========================
+       STYLE BOX
+    ========================= */
+
+    .style-box {
+      margin-top: 25px;
+      background: #191919;
+      border: 1px solid #2d2d2d;
+      border-radius: 22px;
+      padding: 28px;
+    }
+
+    .style-box h2 {
+      margin: 0 0 12px;
+      font-size: 27px;
+    }
+
+    .style-box p {
+      color: #c3c3c3;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* =========================
+       OUTFIT BREAKDOWN
+    ========================= */
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .breakdown-card {
+      background: #171717;
+      border: 1px solid #303030;
+      border-radius: 20px;
+      padding: 28px 18px;
+      text-align: center;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .breakdown-card:hover {
+      transform: translateY(-5px);
+      border-color: #555;
+    }
+
+    .breakdown-icon {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .breakdown-label {
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .breakdown-card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    /* =========================
+       OUTFIT RECOMMENDATION
+    ========================= */
+
+    .outfit-recommendation {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: linear-gradient(135deg, #222, #151515);
+      border: 1px solid #343434;
+      border-radius: 24px;
+      padding: 25px;
+    }
+
+    .outfit-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: #303030;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 43px;
+      flex-shrink: 0;
+    }
+
+    .outfit-label {
+      color: #8e8e8e;
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    .outfit-recommendation h2 {
+      margin: 7px 0;
+      font-size: 28px;
+    }
+
+    .outfit-recommendation p {
+      color: #bdbdbd;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       WHAT TO WEAR
+    ========================= */
+
+    .wear-box {
+      background: #171717;
+      border: 1px solid #303030;
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .wear-box h2 {
+      margin: 0 0 20px;
+      font-size: 28px;
+    }
+
+    .wear-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .wear-list li {
+      background: #222;
+      border-radius: 14px;
+      padding: 15px 17px;
+      color: #d0d0d0;
+    }
+
+    .wear-list li::before {
+      content: "✦";
+      margin-right: 10px;
+      color: #fff;
+    }
+
+    /* =========================
+       EXPLORE
+    ========================= */
+
+    .explore-intro {
+      color: #aaa;
+      line-height: 1.6;
+      margin-top: -10px;
+      margin-bottom: 25px;
+    }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .explore-card {
+      background: #161616;
+      border: 1px solid #303030;
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .explore-card:hover {
+      transform: translateY(-7px);
+      border-color: #666;
+    }
+
+    .explore-image {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      background: #222;
+    }
+
+    .explore-info {
+      padding: 20px;
+    }
+
+    .explore-info small {
+      color: #888;
+      letter-spacing: 2px;
+      font-size: 10px;
+    }
+
+    .explore-info h3 {
+      margin: 8px 0;
+      font-size: 21px;
+    }
+
+    .explore-info p {
+      color: #aaa;
+      line-height: 1.5;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .explore-button {
+      display: inline-block;
+      margin-top: 14px;
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* =========================
+       FOOTER CTA
+    ========================= */
+
+    .final-cta {
+      text-align: center;
+      background: #1b1b1b;
+      border: 1px solid #303030;
+      border-radius: 28px;
+      padding: 45px 25px;
+      margin-top: 20px;
+    }
+
+    .final-cta h2 {
+      margin: 0 0 12px;
+      font-size: 34px;
+    }
+
+    .final-cta p {
+      color: #aaa;
+      margin: 0 0 25px;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 15px 25px;
+      background: white;
+      color: black;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #181818;
+      border: 1px solid #3b3b3b;
+      border-radius: 25px;
+      padding: 25px;
+      position: relative;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      margin-bottom: 22px;
+      background: #222;
+    }
+
+    .modal-box h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .modal-box p {
+      color: #bbb;
+      line-height: 1.7;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .breakdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .explore-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .look-photo {
+        height: 430px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .page {
+        padding: 35px 15px 60px;
+      }
+
+      .result-intro {
+        padding: 30px 20px;
+      }
+
+      .look-photo {
+        height: 350px;
+      }
+
+      .look-content h2 {
+        font-size: 31px;
+      }
+
+      .breakdown-grid,
+      .explore-grid,
+      .wear-list {
+        grid-template-columns: 1fr;
+      }
+
+      .outfit-recommendation {
+        align-items: flex-start;
+      }
+
+      .outfit-recommendation h2 {
+        font-size: 23px;
+      }
+
+      .modal-image {
+        height: 250px;
+      }
+    }
+    /* DRIP CHECK THEME MATCH */
+    body { font-family: 'Space Grotesk', Arial, sans-serif; background: #11110f; color: #f4f1e8; }
+    .hero-label, .look-label, .outfit-label, .breakdown-label,
+    .section-heading span, .explore-info small { font-family: 'DM Mono', monospace; color: #a5a49b; }
+    .hero h1, .result-intro h2, .look-content h2 { letter-spacing: -2px; }
+    .hero h1, .look-content h2, .outfit-recommendation h2 { color: #c8ff00; }
+    
+    .result-intro, .main-look, .style-box, .breakdown-card, .outfit-recommendation,
+    .wear-box, .explore-card, .final-cta {
+        background: #1b1b18; border-color: #34342e; border-radius: 6px;
+    }
+    .outfit-icon { background: rgba(200, 255, 0, 0.12); border-radius: 6px; }
+    .wear-list li { background: #11110f; border-radius: 4px; }
+    .wear-list li::before, .explore-button { color: #c8ff00; }
+    .breakdown-card:hover, .explore-card:hover { border-color: #c8ff00; }
+
+    .back-button { background: #c8ff00; color: #11110f; }
+    .back-button:hover { box-shadow: 0 10px 30px rgba(200, 255, 0, 0.15); }
+    .modal-box { background: #1b1b18; border-color: #34342e; border-radius: 6px; }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <header class="hero">
+      <div class="hero-label">DRIP CHECK ✦ AI FASHION</div>
+
+      <h1>Your Drip Check</h1>
+
+      <p>
+        Your personal style starts here.
+        Here's your personalized outfit direction.
+      </p>
+    </header>
+
+
+    <!-- =========================
+         RESULT INTRO
+    ========================== -->
+
+    <section class="result-intro">
+
+      <h2 id="resultTitle">
+        ✨ Your Drip Check
+      </h2>
+
+      <p id="resultDescription">
+        Let's build a look that feels like you.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         YOUR LOOK
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+        <h2>YOUR LOOK ✦</h2>
+        <span id="occasionLabel">STYLE RESULT</span>
+      </div>
+
+      <div class="main-look">
+
+        <div class="look-photo">
+
+          <img
+            id="mainLookImage"
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85"
+            alt="Fashion outfit"
+            onerror="this.style.display='none';"
+          >
+
+          <div class="photo-overlay"></div>
+
+        </div>
+
+        <div class="look-content">
+
+          <div class="look-label">
+            YOUR STYLE VIBE
+          </div>
+
+          <h2 id="lookTitle">
+            Effortlessly Cool
+          </h2>
+
+          <p id="lookSubtitle">
+            Comfortable • Confident • Stylish
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="style-box">
+
+        <h2 id="styleTitle">
+          ✨ Your Style
+        </h2>
+
+        <p id="styleDescription">
+          You like outfits that feel comfortable, confident
+          and stylish without looking like you tried too hard.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         OUTFIT BREAKDOWN
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+        <h2>THE FORMULA ✦</h2>
+        <span>YOUR LOOK</span>
+      </div>
+
+      <div class="breakdown-grid">
+
+        <div class="breakdown-card">
+          <div class="breakdown-icon" id="topIcon">👕</div>
+          <div class="breakdown-label">TOP</div>
+          <h3 id="topText">Statement Top</h3>
+        </div>
+
+        <div class="breakdown-card">
+          <div class="breakdown-icon" id="bottomIcon">👖</div>
+          <div class="breakdown-label">BOTTOM</div>
+          <h3 id="bottomText">Straight / Relaxed Bottoms</h3>
+        </div>
+
+        <div class="breakdown-card">
+          <div class="breakdown-icon" id="shoesIcon">👟</div>
+          <div class="breakdown-label">SHOES</div>
+          <h3 id="shoesText">Stylish Sneakers</h3>
+        </div>
+
+        <div class="breakdown-card">
+          <div class="breakdown-icon" id="accessoryIcon">👜</div>
+          <div class="breakdown-label">ACCESSORIES</div>
+          <h3 id="accessoryText">Bold Jewellery</h3>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         OUTFIT VIBE
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+        <h2>YOUR OUTFIT VIBE ✨</h2>
+      </div>
+
+      <div class="outfit-recommendation">
+
+        <div class="outfit-icon" id="outfitIcon">
+          ✨
+        </div>
+
+        <div>
+
+          <div class="outfit-label">
+            YOUR OUTFIT VIBE
+          </div>
+
+          <h2 id="outfitVibe">
+            Effortlessly Cool
+          </h2>
+
+          <p id="outfitDescription">
+            A clean, confident look that feels natural and stylish.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHAT TO WEAR
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+        <h2 id="wearTitle">
+          What to Wear 👕
+        </h2>
+      </div>
+
+      <div class="wear-box">
+
+        <ul class="wear-list" id="wearList">
+
+          <li>Oversized or relaxed-fit top</li>
+          <li>Straight-fit jeans</li>
+          <li>Clean sneakers</li>
+          <li>Minimal accessories</li>
+          <li>Neutral colours</li>
+          <li>One statement piece</li>
+
+        </ul>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPLORE
+    ========================== -->
+
+    <section class="section" id="explore">
+
+      <div class="section-heading">
+        <h2>EXPLORE THE LOOK ✦</h2>
+        <span>GET INSPIRED</span>
+      </div>
+
+      <p class="explore-intro" id="exploreIntro">
+        Explore outfit ideas that match your current vibe.
+        Tap any look to see the styling direction.
+      </p>
+
+      <div class="explore-grid" id="exploreGrid">
+        <!-- Cards are generated by JavaScript -->
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL CTA
+    ========================== -->
+
+    <section class="final-cta">
+
+      <h2>Ready to switch up your drip? ✨</h2>
+
+      <p>
+        Go back and try another occasion to discover a different look.
+      </p>
+
+      <a href="index.html#stylist" class="back-button">
+        ← BACK TO STYLE CHECK
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       MODAL
+  ========================== -->
+
+  <div class="modal" id="lookModal">
+
+    <div class="modal-box">
+
+      <button class="modal-close" id="modalClose">
+        ×
+      </button>
+
+      <img
+        id="modalImage"
+        class="modal-image"
+        src=""
+        alt="Selected outfit"
+        onerror="this.style.display='none';"
+      >
+
+      <h2 id="modalTitle">
+        Outfit
+      </h2>
+
+      <p id="modalDescription">
+        Outfit details.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* ---------------------------------
+       GET OCCASION
+    --------------------------------- */
+
+    let savedOccasion = null;
+    try { savedOccasion = localStorage.getItem("occasion"); } catch (e) {}
+    const occasion =
+        new URLSearchParams(location.search).get("occasion") ||
+        savedOccasion ||
+        "Just Because";
+   
+
+
+    /* ---------------------------------
+       ALL STYLE DATA
+    --------------------------------- */
+
+    const looks = {
+
+      "College": {
+
+        title: "Campus Cool",
+
+        subtitle: "Relaxed • Fresh • Confident",
+
+        description:
+          "Easy everyday pieces with a clean, effortless campus vibe.",
+
+        resultDescription:
+          "A comfortable everyday look that keeps you stylish without trying too hard.",
+
+        image:
+          "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=85",
+
+        icon: "🎓",
+
+        outfitVibe: "Campus Cool",
+
+        outfitDescription:
+          "Relaxed pieces, clean sneakers and an effortless student-friendly vibe.",
+
+        top: "Relaxed T-Shirt",
+
+        bottom: "Straight-Fit Jeans",
+
+        shoes: "Clean Sneakers",
+
+        accessories: "Simple Backpack",
+
+        topIcon: "👕",
+
+        bottomIcon: "👖",
+
+        shoesIcon: "👟",
+
+        accessoryIcon: "🎒",
+
+        wearTitle: "What to Wear 🎓",
+
+        wear: [
+          "Oversized or relaxed-fit t-shirt",
+          "Straight-fit jeans",
+          "Clean everyday sneakers",
+          "Simple backpack",
+          "Minimal jewellery",
+          "Neutral or soft colours"
+        ],
+
+        explore: [
+
+          {
+            title: "Everyday Campus",
+            category: "COLLEGE LOOK",
+            description:
+              "Relaxed denim with a clean casual top.",
+            image:
+              "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Casual Layers",
+            category: "COLLEGE LOOK",
+            description:
+              "Simple layers for an effortless everyday outfit.",
+            image:
+              "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Clean Streetwear",
+            category: "COLLEGE LOOK",
+            description:
+              "A relaxed silhouette with modern streetwear energy.",
+            image:
+              "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85"
+          }
+
+        ]
+
+      },
+
+
+      "Date Night": {
+
+        title: "After-Dark Energy",
+
+        subtitle: "Polished • Confident • Refined",
+
+        description:
+          "A polished look with subtle details that feel intentional.",
+
+        resultDescription:
+          "A confident date-night look that feels dressed up without feeling overdone.",
+
+        image:
+          "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=85",
+
+        icon: "🌙",
+
+        outfitVibe: "After-Dark Energy",
+
+        outfitDescription:
+          "Clean silhouettes, darker tones and subtle statement details.",
+
+        top: "Fitted Shirt / Top",
+
+        bottom: "Dark Trousers",
+
+        shoes: "Clean Sneakers / Loafers",
+
+        accessories: "Minimal Jewellery",
+
+        topIcon: "👔",
+
+        bottomIcon: "👖",
+
+        shoesIcon: "👞",
+
+        accessoryIcon: "⌚",
+
+        wearTitle: "What to Wear 🌙",
+
+        wear: [
+          "Well-fitted shirt or top",
+          "Dark jeans or tailored trousers",
+          "Clean sneakers or loafers",
+          "Minimal accessories",
+          "One subtle statement piece",
+          "Keep colours coordinated"
+        ],
+
+        explore: [
+
+          {
+            title: "Dinner Ready",
+            category: "DATE NIGHT",
+            description:
+              "A polished silhouette for dinner or an evening out.",
+            image:
+              "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Minimal Night Look",
+            category: "DATE NIGHT",
+            description:
+              "Simple pieces with a refined after-dark feel.",
+            image:
+              "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Smart Casual",
+            category: "DATE NIGHT",
+            description:
+              "The middle ground between casual and dressed up.",
+            image:
+              "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=85"
+          }
+
+        ]
+
+      },
+
+
+      "Party": {
+
+        title: "Statement Drip",
+
+        subtitle: "Bold • Fun • Standout",
+
+        description:
+          "Bold details and stylish pieces made to stand out.",
+
+        resultDescription:
+          "This is your chance to have fun with your outfit and let one or two pieces stand out.",
+
+        image:
+          "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=85",
+
+        icon: "🎉",
+
+        outfitVibe: "Statement Drip",
+
+        outfitDescription:
+          "Bold details and stylish pieces made to stand out.",
+
+        top: "Statement Top",
+
+        bottom: "Straight / Relaxed Bottoms",
+
+        shoes: "Stylish Sneakers",
+
+        accessories: "Bold Jewellery",
+
+        topIcon: "👕",
+
+        bottomIcon: "👖",
+
+        shoesIcon: "👟",
+
+        accessoryIcon: "👜",
+
+        wearTitle: "What to Wear 🎉",
+
+        wear: [
+          "Statement top or shirt",
+          "Relaxed or straight-fit bottoms",
+          "Stylish sneakers",
+          "Accessories that stand out",
+          "One bold piece",
+          "Have fun with texture or colour"
+        ],
+
+        explore: [
+
+          {
+            title: "Party Statement",
+            category: "PARTY LOOK",
+            description:
+              "A fun statement outfit designed to grab attention.",
+            image:
+              "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Night Out",
+            category: "PARTY LOOK",
+            description:
+              "A confident look for nights out with friends.",
+            image:
+              "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Bold & Playful",
+            category: "PARTY LOOK",
+            description:
+              "Mix a statement piece with clean basics.",
+            image:
+              "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85"
+          }
+
+        ]
+
+      },
+
+
+      "Formal": {
+
+        title: "Clean & Polished",
+
+        subtitle: "Sharp • Elegant • Timeless",
+
+        description:
+          "Structured pieces and coordinated colours for a polished finish.",
+
+        resultDescription:
+          "A refined formal direction that keeps everything clean, coordinated and confident.",
+
+        image:
+          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1400&q=85",
+
+        icon: "🕴️",
+
+        outfitVibe: "Clean & Polished",
+
+        outfitDescription:
+          "Structured silhouettes, coordinated colours and timeless finishing touches.",
+
+        top: "Structured Shirt / Blouse",
+
+        bottom: "Tailored Trousers",
+
+        shoes: "Formal Shoes",
+
+        accessories: "Minimal Accessories",
+
+        topIcon: "👔",
+
+        bottomIcon: "👖",
+
+        shoesIcon: "👞",
+
+        accessoryIcon: "⌚",
+
+        wearTitle: "What to Wear 🕴️",
+
+        wear: [
+          "Structured shirt or blouse",
+          "Tailored trousers",
+          "Clean formal shoes",
+          "Minimal accessories",
+          "Clean coordinated colours",
+          "Keep the silhouette polished"
+        ],
+
+        explore: [
+
+          {
+            title: "Classic Formal",
+            category: "FORMAL LOOK",
+            description:
+              "A timeless outfit with a sharp silhouette.",
+            image:
+              "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Modern Formal",
+            category: "FORMAL LOOK",
+            description:
+              "Traditional polish with a more modern feel.",
+            image:
+              "https://images.unsplash.com/photo-1506629905607-d9c297d8f1e7?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Smart & Minimal",
+            category: "FORMAL LOOK",
+            description:
+              "Clean details and a simple sophisticated finish.",
+            image:
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85"
+          }
+
+        ]
+
+      },
+
+
+      "Just Because": {
+
+        title: "Effortlessly You",
+
+        subtitle: "Comfortable • Casual • Personal",
+
+        description:
+          "Everyday pieces that feel natural, comfortable and completely you.",
+
+        resultDescription:
+          "No occasion needed. Just a look that feels good and looks like you.",
+
+        image:
+          "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=85",
+
+        icon: "✨",
+
+        outfitVibe: "Effortlessly You",
+
+        outfitDescription:
+          "Comfortable basics mixed with one detail that makes the outfit yours.",
+
+        top: "Relaxed Everyday Top",
+
+        bottom: "Relaxed Jeans / Trousers",
+
+        shoes: "Favourite Sneakers",
+
+        accessories: "Simple Accessories",
+
+        topIcon: "👕",
+
+        bottomIcon: "👖",
+
+        shoesIcon: "👟",
+
+        accessoryIcon: "👜",
+
+        wearTitle: "What to Wear ✨",
+
+        wear: [
+          "Comfortable everyday top",
+          "Relaxed-fit jeans or trousers",
+          "Your favourite sneakers",
+          "Simple accessories",
+          "Neutral colours",
+          "Add one piece that feels like you"
+        ],
+
+        explore: [
+
+          {
+            title: "Everyday Favourite",
+            category: "CASUAL LOOK",
+            description:
+              "An easy outfit for everyday plans.",
+            image:
+              "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Relaxed Street",
+            category: "CASUAL LOOK",
+            description:
+              "Comfort-first styling with a modern edge.",
+            image:
+              "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+          },
+
+          {
+            title: "Simple & Stylish",
+            category: "CASUAL LOOK",
+            description:
+              "Minimal pieces that still feel put together.",
+            image:
+              "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85"
+          }
+
+        ]
+
+      }
+
+    };
+
+
+    /* ---------------------------------
+       SELECT CURRENT LOOK
+    --------------------------------- */
+
+    const data = looks[occasion] || looks["Just Because"];
+
+
+    /* ---------------------------------
+       BASIC RESULT TEXT
+    --------------------------------- */
+
+    document.getElementById("resultTitle").textContent =
+      data.icon + " Your Drip Check: " + occasion;
+
+    document.getElementById("resultDescription").textContent =
+      data.resultDescription;
+
+    document.getElementById("occasionLabel").textContent =
+      occasion.toUpperCase();
+
+    document.getElementById("mainLookImage").src =
+      data.image;
+
+    document.getElementById("mainLookImage").alt =
+      data.title + " fashion outfit";
+
+    document.getElementById("lookTitle").textContent =
+      data.title;
+
+    document.getElementById("lookSubtitle").textContent =
+      data.subtitle;
+
+    document.getElementById("styleTitle").textContent =
+      data.icon + " " + data.title;
+
+    document.getElementById("styleDescription").textContent =
+      data.description;
+
+
+    /* ---------------------------------
+       OUTFIT FORMULA
+    --------------------------------- */
+
+    document.getElementById("topIcon").textContent =
+      data.topIcon;
+
+    document.getElementById("bottomIcon").textContent =
+      data.bottomIcon;
+
+    document.getElementById("shoesIcon").textContent =
+      data.shoesIcon;
+
+    document.getElementById("accessoryIcon").textContent =
+      data.accessoryIcon;
+
+    document.getElementById("topText").textContent =
+      data.top;
+
+    document.getElementById("bottomText").textContent =
+      data.bottom;
+
+    document.getElementById("shoesText").textContent =
+      data.shoes;
+
+    document.getElementById("accessoryText").textContent =
+      data.accessories;
+
+
+    /* ---------------------------------
+       OUTFIT VIBE
+    --------------------------------- */
+
+    document.getElementById("outfitIcon").textContent =
+      data.icon;
+
+    document.getElementById("outfitVibe").textContent =
+      data.outfitVibe;
+
+    document.getElementById("outfitDescription").textContent =
+      data.outfitDescription;
+
+
+    /* ---------------------------------
+       WHAT TO WEAR
+    --------------------------------- */
+
+    document.getElementById("wearTitle").textContent =
+      data.wearTitle;
+
+    const wearList =
+      document.getElementById("wearList");
+
+    wearList.innerHTML = "";
+
+    data.wear.forEach(function(item) {
+
+      const li =
+        document.createElement("li");
+
+      li.textContent = item;
+
+      wearList.appendChild(li);
+
+    });
+
+
+    /* ---------------------------------
+       EXPLORE INTRO
+    --------------------------------- */
+
+    document.getElementById("exploreIntro").textContent =
+      "Explore " +
+      occasion.toLowerCase() +
+      " outfit ideas and find the details that match your vibe.";
+
+
+    /* ---------------------------------
+       EXPLORE CARDS
+    --------------------------------- */
+
+    const exploreGrid =
+      document.getElementById("exploreGrid");
+
+    exploreGrid.innerHTML = "";
+
+    data.explore.forEach(function(item, index) {
+
+      const card =
+        document.createElement("div");
+
+      card.className = "explore-card";
+
+      card.innerHTML = `
+        <img
+          class="explore-image"
+          src="${item.image}"
+          alt="${item.title}"
+          loading="lazy"
+          onerror="this.style.display='none';"
+        >
+
+        <div class="explore-info">
+
+          <small>${item.category}</small>
+
+          <h3>${item.title}</h3>
+
+          <p>${item.description}</p>
+
+          <div class="explore-button">
+            EXPLORE LOOK →
+          </div>
+
+        </div>
+      `;
+
+      card.addEventListener("click", function() {
+
+        openModal(
+          item.title,
+          item.description,
+          item.image
+        );
+
+      });
+
+      exploreGrid.appendChild(card);
+
+    });
+
+
+    /* ---------------------------------
+       MODAL
+    --------------------------------- */
+
+    const modal =
+      document.getElementById("lookModal");
+
+    const modalClose =
+      document.getElementById("modalClose");
+
+    const modalImage =
+      document.getElementById("modalImage");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const modalDescription =
+      document.getElementById("modalDescription");
+
+
+    function openModal(title, description, image) {
+
+      modalTitle.textContent =
+        title;
+
+      modalDescription.textContent =
+        description +
+        " This look works especially well for your " +
+        occasion.toLowerCase() +
+        " vibe.";
+
+      modalImage.style.display = "block";
+
+      modalImage.src =
+        image;
+
+      modalImage.alt =
+        title;
+
+      modal.classList.add("active");
+
+      document.body.style.overflow =
+        "hidden";
+    }
+
+
+    function closeModal() {
+
+      modal.classList.remove("active");
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    modalClose.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    modal.addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === modal) {
+          closeModal();
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+          closeModal();
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>

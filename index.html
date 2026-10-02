@@ -204,35 +204,7 @@
             </div>
         </section>
 
-        <!-- RATE MY OUTFIT -->
-        <section class="rate-section" id="rate">
-            <div class="rate-heading">
-                <p class="section-label">04 / YOUR OUTFIT, YOUR SCORE</p>
-                <h2>RATE MY<br><span>OUTFIT.</span></h2>
-                <p>
-                    Upload your fit, rate the details yourself, and let Drip Check
-                    calculate your final score.
-                </p>
-            </div>
-
-            <div class="rate-box">
-
-                <div class="rate-box-top">
-                    <span>✳ MY OUTFIT CHECK</span>
-                    <span>PRIVATE • IN YOUR BROWSER</span>
-                </div>
-
-                <input
-                    type="file"
-                    id="outfitUpload"
-                    accept="image/*"
-                    hidden
-                >
-
-                <label for="outfitUpload" class="upload-area" id="uploadArea">
-                    <div class="upload-icon">＋</div>
-                    <h3>UPLOAD YOUR FIT</h3>
-                    <p>Click here to choose a photo from your device.</p>
+        from your device.</p>
                     <span>JPG • PNG • WEBP</span>
                 </label>
 
@@ -246,70 +218,41 @@
                     </button>
                 </div>
 
-                <div class="rating-area" id="ratingArea">
-                    <div class="rating-intro">
-                        <span>01</span>
-                        <div>
-                            <h3>READY FOR THE VERDICT?</h3>
-                            <p>Our AI stylist will score your fit and give you tips.</p>
-                        </div>
-                    </div>
-                    <p class="rate-status" id="rateStatus"></p>
-                    <button class="rate-button" id="rateOutfitBtn" type="button">
-                        RATE MY OUTFIT →
-                    </button>
+                <!-- RATE MY OUTFIT -->
+        <section class="rate-section" id="rate">
+            <div class="rate-heading">
+                <p class="section-label">04 / YOUR OUTFIT, YOUR SCORE</p>
+                <h2>RATE MY<br><span>OUTFIT.</span></h2>
+                <p>
+                    Upload your fit and let our AI stylist give you a Drip Score
+                    with honest, helpful tips.
+                </p>
+            </div>
+
+            <div class="rate-box">
+
+                <div class="rate-box-top">
+                    <span>✳ MY OUTFIT CHECK</span>
+                    <span>POWERED BY AI</span>
                 </div>
-                
 
-                    <div class="rating-grid">
+                <input type="file" id="outfitUpload" accept="image/*" hidden>
 
-                        <div class="rating-row">
-                            <div>
-                                <strong>FIT & SILHOUETTE</strong>
-                                <small>Does everything sit and fit well?</small>
-                            </div>
-                            <output id="fitValue">8</output>
-                            <input id="fitRating" type="range" min="1" max="10" value="8">
-                        </div>
+                <label for="outfitUpload" class="upload-area" id="uploadArea">
+                    <div class="upload-icon">＋</div>
+                    <h3>UPLOAD YOUR FIT</h3>
+                    <p>Click here to choose a photo from your device.</p>
+                    <span>JPG • PNG • WEBP</span>
+                </label>
 
-                        <div class="rating-row">
-                            <div>
-                                <strong>COLOUR COORDINATION</strong>
-                                <small>Do the colours work together?</small>
-                            </div>
-                            <output id="colorValue">8</output>
-                            <input id="colorRating" type="range" min="1" max="10" value="8">
-                        </div>
+                <div class="photo-preview-wrap" id="photoPreviewWrap">
+                    <img id="outfitPreview" src="" alt="Your uploaded outfit">
+                    <button id="changePhotoBtn" class="photo-action" type="button">CHANGE PHOTO</button>
+                    <button id="removePhotoBtn" class="photo-remove" type="button" aria-label="Remove photo">×</button>
+                </div>
 
-                        <div class="rating-row">
-                            <div>
-                                <strong>SHOES</strong>
-                                <small>Do the shoes complete the look?</small>
-                            </div>
-                            <output id="shoesValue">8</output>
-                            <input id="shoesRating" type="range" min="1" max="10" value="8">
-                        </div>
-
-                        <div class="rating-row">
-                            <div>
-                                <strong>ACCESSORIES</strong>
-                                <small>Are the finishing details balanced?</small>
-                            </div>
-                            <output id="accessoryValue">8</output>
-                            <input id="accessoryRating" type="range" min="1" max="10" value="8">
-                        </div>
-
-                        <div class="rating-row">
-                            <div>
-                                <strong>OVERALL VIBE</strong>
-                                <small>Would you wear this look again?</small>
-                            </div>
-                            <output id="vibeValue">8</output>
-                            <input id="vibeRating" type="range" min="1" max="10" value="8">
-                        </div>
-
-                    </div>
-
+                <div class="rating-area" id="ratingArea">
+                    <p class="rate-status" id="rateStatus"></p>
                     <button class="rate-button" id="rateOutfitBtn" type="button">
                         RATE MY OUTFIT →
                     </button>
@@ -324,22 +267,19 @@
                     <div class="rating-result-content">
                         <p class="score-label">YOUR DRIP SCORE</p>
                         <h3 id="scoreTitle">LOOKING GOOD ✦</h3>
-                        <p id="scoreDescription">
-                            Your outfit has a strong overall balance. Keep the confidence.
-                        </p>
+                        <p id="scoreDescription"></p>
                     </div>
                 </div>
 
-                <div class="breakdown-bars" id="breakdownBars"></div>
                 <div class="feedback-grid" id="feedbackGrid">
                     <div class="feedback-card">
                         <span>✦ WHAT'S WORKING</span>
-                        <p id="workingText">Your fit has a balanced overall vibe.</p>
+                        <p id="workingText"></p>
                     </div>
 
                     <div class="feedback-card">
                         <span>↗ LEVEL IT UP</span>
-                        <p id="improveText">Try pushing one detail a little further.</p>
+                        <p id="improveText"></p>
                     </div>
                 </div>
 
